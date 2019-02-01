@@ -70,7 +70,7 @@ if __name__ == '__main__':
     parser.add_argument("-r", "--ratio", type=str, required=True,
                         help="Ratio of test set for this split")
     parser.add_argument("-i", "--indir", type=str, required=True,
-                        help="Relative path of the input directory containing images.")
+                        help="Relative path of the input file containing the data locations.")
     parser.add_argument("-o", "--outdir", type=str, required=True,
                         help="Relative path of the output directory for output txt files")
     parser.add_argument("-n", "--nameOfDataset", type=str, required=True,
@@ -87,12 +87,19 @@ if __name__ == '__main__':
     if not os.access(out_dir, os.F_OK):
         os.mkdir(out_dir)
 
-    fileList = os.listdir(in_dir)
     pathList = []
-    for current in fileList:
-        completePath = os.path.join(in_dir, current)
-        if is_image(completePath):
-            pathList.append(completePath)
+    dirList = []
+    with open(in_dir, 'r') as input:
+        for line in input:
+            if line.strip():
+                dirList.append(os.path.join(os.getcwd(), line.strip()))
+
+    for dir in dirList:
+        fileList = os.listdir(dir)
+        for current in fileList:
+            completePath = os.path.join(dir, current)
+            if is_image(completePath):
+                pathList.append(completePath)
 
     random.shuffle(pathList)
     testSize = int(len(pathList) * float(args.ratio))
@@ -107,7 +114,7 @@ if __name__ == '__main__':
         for path in trainList:
             testFile.write(path + "\n")
         testFile.close()
-
+    print("The dataset has been splited into " + str(len(pathList) - testSize) + " training images and " + str(testSize) + " test images")
 
 
 
