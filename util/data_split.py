@@ -105,6 +105,11 @@ if __name__ == '__main__':
     testSize = int(len(pathList) * float(args.ratio))
     testList = pathList[0: testSize]
     trainList = pathList[testSize:]
+    with open(os.path.join(out_dir, args.nameOfDataset + ".txt"), 'w') as allFile:
+        for path in pathList:
+            allFile.write(path + "\n")
+        allFile.close()
+
     with open(os.path.join(out_dir, args.nameOfDataset + "_train.txt"), 'w') as trainFile:
         for path in trainList:
             trainFile.write(path + "\n")
