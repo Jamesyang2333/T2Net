@@ -535,6 +535,7 @@ class _UNetGenerator(nn.Module):
         return result
 
 
+
 class _MultiscaleDiscriminator(nn.Module):
     def __init__(self, input_nc, ndf=64, n_layers=3, num_D=1, norm='batch', activation='PReLU', gpu_ids=[]):
         super(_MultiscaleDiscriminator, self).__init__()

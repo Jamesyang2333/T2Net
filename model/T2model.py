@@ -187,6 +187,36 @@ class T2NetModel(BaseModel):
 
         total_loss.backward()
 
+    def backward_translated2semantic(self):
+
+        # task network
+        network._freeze(self.net_img_D, self.net_f_D)
+        network._unfreeze(self.net_s2t, self.net_img2task)
+        fake = self.net_img2task.forward(self.img_s2t[-1])
+
+        size=len(fake)
+        self.lab_f_s = fake[0]
+        self.lab_s_g = fake[1:]
+
+        #feature GAN loss
+        D_fake = self.net_f_D(self.lab_f_s)
+        G_loss = 0
+        for D_fake_i in D_fake:
+            G_loss += torch.mean((D_fake_i - 1.0) ** 2)
+        self.loss_f_G = G_loss * self.opt.lambda_gan_feature
+
+        # task loss
+        lab_real = task.scale_pyramid(self.lab_s, size-1)
+        task_loss = 0
+        for (lab_fake_i, lab_real_i) in zip(self.lab_s_g, lab_real):
+            task_loss += torch.CrossEntropyLoss(lab_fake_i, lab_real_i)
+
+        self.loss_lab_s = task_loss * self.opt.lambda_rec_lab
+
+        total_loss = self.loss_f_G + self.loss_lab_s
+
+        total_loss.backward()
+
     def backward_real2depth(self):
 
         # image2depth
@@ -212,7 +242,8 @@ class T2NetModel(BaseModel):
         # T2Net
         self.optimizer_T2Net.zero_grad()
         self.backward_synthesis2real()
-        self.backward_translated2depth()
+        # self.backward_translated2depth()
+        self.backward_translated2semantic()
         self.backward_real2depth()
         self.optimizer_T2Net.step()
         # Discriminator
