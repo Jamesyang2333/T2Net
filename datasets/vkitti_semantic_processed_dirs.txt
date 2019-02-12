@@ -1,0 +1,5 @@
+../datasets/vkitti/vkitti_semantic_processed/0001
+../datasets/vkitti/vkitti_semantic_processed/0002
+../datasets/vkitti/vkitti_semantic_processed/0006
+../datasets/vkitti/vkitti_semantic_processed/0018
+../datasets/vkitti/vkitti_semantic_processed/0020
