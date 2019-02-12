@@ -1,0 +1,7 @@
+../datasets/kitti/0001/2011_09_26_drive_0001_sync/image_02/data
+../datasets/kitti/0002/2011_09_26_drive_0002_sync/image_02/data
+../datasets/kitti/0009/2011_09_26_drive_0009_sync/image_02/data
+../datasets/kitti/0011/2011_09_26_drive_0011_sync/image_02/data
+../datasets/kitti/0084/2011_09_26_drive_0084_sync/image_02/data
+../datasets/kitti/0029/2011_09_26_drive_0029_sync/image_02/data
+../datasets/kitti/0016/2011_09_30_drive_0016_sync/image_02/data
