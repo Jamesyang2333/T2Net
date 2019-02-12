@@ -1,10 +1,22 @@
 import random
 from PIL import Image
+import scipy.misc as sp
+import numpy as np
 import torchvision.transforms as transforms
 import torch.utils.data as data
 from .image_folder import make_dataset
 import torchvision.transforms.functional as F
 
+def all_idx(idx, axis):
+    grid = np.ogrid[tuple(map(slice, idx.shape))]
+    grid.insert(axis, idx)
+    return tuple(grid)
+
+def onehot_initialization(a):
+    ncols = 13
+    out = np.zeros(a.shape + (ncols,), dtype=int)
+    out[all_idx(a, axis=2)] = 1
+    return out
 
 class CreateDataset(data.Dataset):
     def initialize(self, opt):
@@ -44,7 +56,10 @@ class CreateDataset(data.Dataset):
                 lab_target_path = self.lab_target_paths[index]
             else:
                 raise ValueError('Data mode [%s] is not recognized' % self.opt.dataset_mode)
-            lab_source = Image.open(lab_source_path).convert('RGB')
+            lab_source = sp.imread(lab_source_path)
+            lab_source = onehot_initialization(lab_source)
+            lab_target = Image.open(lab_target_path)
+            #lab_source = Image.open(lab_source_path).convert('RGB')
             lab_target = Image.open(lab_target_path).convert('RGB')
             lab_source = lab_source.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.BICUBIC)
             lab_target = lab_target.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.BICUBIC)
