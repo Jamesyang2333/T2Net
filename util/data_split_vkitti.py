@@ -66,7 +66,7 @@ with open("../datasets/vkitti_rgb.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic.txt", 'w') as allFile:
     for path in pathList:
-        allFile.write("../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_rgb_train.txt", 'w') as allFile:
@@ -76,7 +76,7 @@ with open("../datasets/vkitti_rgb_train.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic_train.txt", 'w') as allFile:
     for path in trainList:
-        allFile.write("../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_rgb_test.txt", 'w') as allFile:
@@ -86,7 +86,7 @@ with open("../datasets/vkitti_rgb_test.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic_test.txt", 'w') as allFile:
     for path in testList:
-        allFile.write("../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
     allFile.close()
 
 print("The dataset has been splited into " + str(len(pathList) - testSize) + " training images and " + str(testSize) + " test images")
