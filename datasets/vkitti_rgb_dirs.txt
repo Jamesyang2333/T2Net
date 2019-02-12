@@ -1,5 +1,5 @@
-../datasets/vkitti_rgb/0001/clone
-../datasets/vkitti_rgb/0002/clone
-../datasets/vkitti_rgb/0006/clone
-../datasets/vkitti_rgb/0018/clone
-../datasets/vkitti_rgb/0020/clone
+../datasets/vkitti/vkitti_rgb/0001/clone
+../datasets/vkitti/vkitti_rgb/0002/clone
+../datasets/vkitti/vkitti_rgb/0006/clone
+../datasets/vkitti/vkitti_rgb/0018/clone
+../datasets/vkitti/vkitti_rgb/0020/clone

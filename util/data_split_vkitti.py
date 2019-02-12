@@ -30,7 +30,7 @@ def is_image(file_name):
     except IOError:
         return False
 
-indir = "../datasts/vkitti_rgb_dirs"
+indir = "../datasets/vkitti_rgb_dirs.txt"
 ratio = 0.2
 dirList = []
 with open(indir, 'r') as input:
@@ -88,6 +88,6 @@ with open("../datasets/vkitti_semantic_test.txt", 'w') as allFile:
     for path in testList:
         allFile.write("../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
     allFile.close()
-    
+
 print("The dataset has been splited into " + str(len(pathList) - testSize) + " training images and " + str(testSize) + " test images")
 
