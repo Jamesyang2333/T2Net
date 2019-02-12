@@ -47,7 +47,6 @@ vkitti_class_dic = {"terrain": 0, "sky": 1, "vegetation": 2, "building": 3,
 
 indir = "../datasets/vkitti_semantic_raw_dirs.txt"
 
-pathList = []
 dirList = []
 
 with open(indir, 'r') as input:
