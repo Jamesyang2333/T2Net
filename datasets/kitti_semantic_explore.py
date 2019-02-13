@@ -33,10 +33,11 @@ def onehot_initialization(a):
 # print(img[0][0])
 
 import os
-pathList = os.listdir("vkitti/vkitti_semantic_processed/0001")
+
+pathList = os.listdir("vkitti/vkitti_semantic_processed/0002")
 for file in pathList:
     #print(file)
-    path = "vkitti/vkitti_semantic_processed/0001/" + file
+    path = "vkitti/vkitti_semantic_processed/0002/" + file
     image = sp.imread(path)
     if image.max() > 13:
         print("error")
