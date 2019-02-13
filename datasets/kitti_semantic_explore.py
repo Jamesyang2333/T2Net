@@ -34,10 +34,18 @@ def onehot_initialization(a):
 
 import os
 
-pathList = os.listdir("vkitti/vkitti_semantic_processed/0002")
-for file in pathList:
-    #print(file)
-    path = "vkitti/vkitti_semantic_processed/0002/" + file
-    image = sp.imread(path)
-    if image.max() > 13:
-        print("error")
+# pathList = os.listdir("vkitti/vkitti_semantic_processed/0002")
+# for file in pathList:
+#     #print(file)
+#     path = "vkitti/vkitti_semantic_processed/0002/" + file
+#     image = sp.imread(path)
+#     if image.max() > 13:
+#         print("error")
+
+lab_source = Image.open("vkitti/vkitti_semantic_processed/0001/00000.png")
+print(type(lab_source))
+lab_source = lab_source.resize((640, 192), Image.NEAREST)
+print(type(lab_source))
+lab_source = np.array(lab_source)
+print(type(lab_source))
+print(lab_source.shape)
