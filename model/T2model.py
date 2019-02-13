@@ -210,7 +210,7 @@ class T2NetModel(BaseModel):
         lab_real = task.scale_pyramid(self.lab_s, size-1)
         task_loss = 0
         for (lab_fake_i, lab_real_i) in zip(self.lab_s_g, lab_real):
-            task_loss += self.crossEntropy(lab_fake_i, Variable(lab_real_i.long()))
+            task_loss += self.crossEntropy(lab_fake_i, lab_real_i.long())
 
         self.loss_lab_s = task_loss * self.opt.lambda_rec_lab
 
