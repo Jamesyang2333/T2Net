@@ -61,7 +61,7 @@ class CreateDataset(data.Dataset):
             lab_target = Image.open(lab_target_path)
             #lab_source = Image.open(lab_source_path).convert('RGB')
             lab_target = Image.open(lab_target_path).convert('RGB')
-            lab_source = lab_source.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.BICUBIC)
+            lab_source = lab_source.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.NEAREST)
             lab_source = np.array(lab_source)
             if lab_source.max() > 12:
                 print("error!!!!!")
