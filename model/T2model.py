@@ -41,6 +41,7 @@ class T2NetModel(BaseModel):
             self.fake_img_pool = ImagePool(opt.pool_size)
             # define loss functions
             self.l1loss = torch.nn.L1Loss()
+            self.crossEntropy = torch.nn.CrossEntropyLoss()
             self.nonlinearity = torch.nn.ReLU()
             # initialize optimizers
             self.optimizer_T2Net = torch.optim.Adam([{'params': filter(lambda p: p.requires_grad, self.net_s2t.parameters())},
@@ -209,7 +210,7 @@ class T2NetModel(BaseModel):
         lab_real = task.scale_pyramid(self.lab_s, size-1)
         task_loss = 0
         for (lab_fake_i, lab_real_i) in zip(self.lab_s_g, lab_real):
-            task_loss += torch.nn.CrossEntropyLoss(lab_fake_i, lab_real_i)
+            task_loss += self.crossEntropy(lab_fake_i, lab_real_i)
 
         self.loss_lab_s = task_loss * self.opt.lambda_rec_lab
 
