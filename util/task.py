@@ -38,7 +38,7 @@ def scale_pyramid(img, num_scales):
         ratio = 2**i
         nh = h // ratio
         nw = w // ratio
-        scaled_img = F.upsample(img, size=(nh, nw), mode='bilinear', align_corners=True)
+        scaled_img = F.upsample(img, size=(nh, nw), mode='nearest', align_corners=True)
         scaled_imgs.append(scaled_img)
 
     scaled_imgs.reverse()
