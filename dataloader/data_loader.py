@@ -68,12 +68,16 @@ class CreateDataset(data.Dataset):
             lab_target = lab_target.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.BICUBIC)
 
             img_source, lab_source, scale = paired_transform(self.opt, img_source, lab_source)
+
+            if lab_source.max() >= 13:
+                raise Exception('Something wrong')
             img_source = self.transform_augment(img_source)
             lab_source = self.transform_no_augment(lab_source)
 
             img_target, lab_target, scale = paired_transform(self.opt, img_target, lab_target)
             img_target = self.transform_no_augment(img_target)
             lab_target = self.transform_no_augment(lab_target)
+
 
             return {'img_source': img_source, 'img_target': img_target,
                     'lab_source': lab_source, 'lab_target': lab_target,
