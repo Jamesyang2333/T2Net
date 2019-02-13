@@ -14,7 +14,7 @@ def all_idx(idx, axis):
 
 def onehot_initialization(a):
     ncols = 13
-    out = np.zeros(a.shape + (ncols,), dtype=int)
+    out = np.zeros(a.shape + (ncols,), dtype=float)
     out[all_idx(a, axis=2)] = 1
     return out
 
