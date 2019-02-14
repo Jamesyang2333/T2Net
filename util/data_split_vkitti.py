@@ -61,7 +61,7 @@ for dir in dirList:
 
 with open("../datasets/vkitti_rgb.txt", 'w') as allFile:
     for path in pathList:
-        allFile.write(os.path.join(dir, path[1]) + "\n")
+        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic.txt", 'w') as allFile:
@@ -70,8 +70,8 @@ with open("../datasets/vkitti_semantic.txt", 'w') as allFile:
     allFile.close()
 
 with open("../datasets/vkitti_rgb_train.txt", 'w') as allFile:
-    for path in trainList:
-        allFile.write(os.path.join(dir, path[1]) + "\n")
+    for path in pathList:
+        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic_train.txt", 'w') as allFile:
@@ -80,8 +80,8 @@ with open("../datasets/vkitti_semantic_train.txt", 'w') as allFile:
     allFile.close()
 
 with open("../datasets/vkitti_rgb_test.txt", 'w') as allFile:
-    for path in testList:
-        allFile.write(os.path.join(dir, path[1]) + "\n")
+    for path in pathList:
+        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic_test.txt", 'w') as allFile:
