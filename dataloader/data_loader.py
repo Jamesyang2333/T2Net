@@ -1,6 +1,6 @@
 import random
 from PIL import Image
-import scipy.misc as sp
+import torch
 import numpy as np
 import torchvision.transforms as transforms
 import torch.utils.data as data
@@ -57,7 +57,6 @@ class CreateDataset(data.Dataset):
             else:
                 raise ValueError('Data mode [%s] is not recognized' % self.opt.dataset_mode)
             lab_source = Image.open(lab_source_path)
-            #lab_source = sp.imread(lab_source_path)
             #lab_target = Image.open(lab_target_path)
             #lab_source = Image.open(lab_source_path).convert('RGB')
             lab_target = Image.open(lab_target_path).convert('RGB')
@@ -66,13 +65,15 @@ class CreateDataset(data.Dataset):
             #     print("error!!!!!")
             # lab_source = onehot_initialization(lab_source)
             lab_target = lab_target.resize([self.opt.loadSize[0], self.opt.loadSize[1]], Image.BICUBIC)
+            lab_source = np.array(lab_source)
 
             img_source, lab_source, scale = paired_transform(self.opt, img_source, lab_source)
 
             if np.array(lab_source).max() >= 13:
                 raise Exception('Something wrong')
             img_source = self.transform_augment(img_source)
-            lab_source = self.transform_no_augment(lab_source)
+            # lab_source = self.transform_no_augment(lab_source)
+            lab_source = torch.from_numpy(lab_source)
 
             img_target, lab_target, scale = paired_transform(self.opt, img_target, lab_target)
             img_target = self.transform_no_augment(img_target)
