@@ -149,6 +149,9 @@ class T2NetModel(BaseModel):
         self.img_s2t, self.img_t2t, self.img_f_s, self.img_f_t, size = \
             self.foreward_G_basic(self.net_s2t, self.img_s, self.img_t)
 
+        print(len(self.img_s2t))
+        print(self.img_s2t[0].size())
+
         # image GAN loss and reconstruction loss
         img_real = task.scale_pyramid(self.img_t, size - 1)
         G_loss = 0
@@ -197,6 +200,9 @@ class T2NetModel(BaseModel):
         total_loss.backward()
 
     def backward_translated2semantic(self):
+
+        print(len(self.img_s2t))
+        print(self.img_s2t[0].size())
 
         # task network
         network._freeze(self.net_img_D, self.net_f_D)
