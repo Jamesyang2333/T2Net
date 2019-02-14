@@ -1,4 +1,5 @@
 import cv2 as cv
+import imageio
 import numpy as np
 from PIL import Image
 # # seman = cv.imread("data_semantics/training/semantic/000000_10.png")
@@ -38,7 +39,7 @@ pathList = os.listdir("vkitti/vkitti_semantic_processed/0001")
 for file in pathList:
     #print(file)
     path = "vkitti/vkitti_semantic_processed/0001/" + file
-    image = sp.imread(path)
+    image = imageio.imread(path)
     if image.max() > 12 or image.min() < 0:
         print("error")
 
