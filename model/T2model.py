@@ -114,13 +114,20 @@ class T2NetModel(BaseModel):
         self.loss_f_D = self.backward_D_basic(self.net_f_D, [self.lab_f_t], [self.lab_f_s])
 
     def foreward_G_basic(self, net_G, img_s, img_t):
+        print(img_s.size())
+        print(img_t.size())
 
         img = torch.cat([img_s, img_t], 0)
         fake = net_G(img)
+        print(len(fake))
+        for i in range(len(fake)):
+            print(str(i) + " " + str(fake[i].size()))
 
         size = len(fake)
 
         f_s, f_t = fake[0].chunk(2)
+        print(f_s.size())
+        print(f_t.size())
         img_fake = fake[1:]
 
         img_s_fake = []
@@ -130,7 +137,8 @@ class T2NetModel(BaseModel):
             img_s, img_t = img_fake_i.chunk(2)
             img_s_fake.append(img_s)
             img_t_fake.append(img_t)
-
+        print(img_s_fake[0].size())
+        print(img_t_fake[0].size())
         return img_s_fake, img_t_fake, f_s, f_t, size
 
     def backward_synthesis2real(self):
