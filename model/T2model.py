@@ -196,8 +196,11 @@ class T2NetModel(BaseModel):
         fake = self.net_img2task.forward(self.img_s2t[-1])
 
         size=len(fake)
+        print(size)
         self.lab_f_s = fake[0]
+        print(self.lab_f_s.size())
         self.lab_s_g = fake[1:]
+        print(self.lab_s_g.size())
 
         #feature GAN loss
         D_fake = self.net_f_D(self.lab_f_s)
