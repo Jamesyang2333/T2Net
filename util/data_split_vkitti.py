@@ -61,33 +61,41 @@ for dir in dirList:
 
 with open("../datasets/vkitti_rgb.txt", 'w') as allFile:
     for path in pathList:
-        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
+        relative_path = "../datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic.txt", 'w') as allFile:
     for path in pathList:
-        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_rgb_train.txt", 'w') as allFile:
-    for path in pathList:
-        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
+    for path in trainList:
+        relative_path = "../datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic_train.txt", 'w') as allFile:
     for path in trainList:
-        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
+
 with open("../datasets/vkitti_rgb_test.txt", 'w') as allFile:
-    for path in pathList:
-        allFile.write("datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1] + "\n")
+    for path in testList:
+        relative_path = "../datasets/vkitti/vkitti_rgb/" + path[0] + "/clone/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
 with open("../datasets/vkitti_semantic_test.txt", 'w') as allFile:
     for path in testList:
-        allFile.write("datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1] + "\n")
+        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
+
 
 print("The dataset has been splited into " + str(len(pathList) - testSize) + " training images and " + str(testSize) + " test images")
 
