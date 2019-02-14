@@ -287,9 +287,11 @@ class T2NetModel(BaseModel):
 
     def validation_target(self):
 
-        lab_real = task.scale_pyramid(self.lab_t, len(self.lab_t_g))
-        task_loss = 0
-        for (lab_fake_i, lab_real_i) in zip(self.lab_t_g, lab_real):
-            task_loss += task.rec_loss(lab_fake_i, lab_real_i)
+        # lab_real = task.scale_pyramid(self.lab_t, len(self.lab_t_g))
+        # task_loss = 0
+        # for (lab_fake_i, lab_real_i) in zip(self.lab_t_g, lab_real):
+        #     task_loss += task.rec_loss(lab_fake_i, lab_real_i)
+
+        task_loss = self.crossEntropy(self.lab_s_g[0], torch.squeeze(self.lab_s.long()))
 
         self.loss_lab_t = task_loss * self.opt.lambda_rec_lab
