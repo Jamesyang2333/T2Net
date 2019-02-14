@@ -114,20 +114,20 @@ class T2NetModel(BaseModel):
         self.loss_f_D = self.backward_D_basic(self.net_f_D, [self.lab_f_t], [self.lab_f_s])
 
     def foreward_G_basic(self, net_G, img_s, img_t):
-        print(img_s.size())
-        print(img_t.size())
+        # print(img_s.size())
+        # print(img_t.size())
 
         img = torch.cat([img_s, img_t], 0)
         fake = net_G(img)
-        print(len(fake))
-        for i in range(len(fake)):
-            print(str(i) + " " + str(fake[i].size()))
+        # print(len(fake))
+        # for i in range(len(fake)):
+        #     print(str(i) + " " + str(fake[i].size()))
 
         size = len(fake)
 
         f_s, f_t = fake[0].chunk(2)
-        print(f_s.size())
-        print(f_t.size())
+        # print(f_s.size())
+        # print(f_t.size())
         img_fake = fake[1:]
 
         img_s_fake = []
@@ -137,8 +137,8 @@ class T2NetModel(BaseModel):
             img_s, img_t = img_fake_i.chunk(2)
             img_s_fake.append(img_s)
             img_t_fake.append(img_t)
-        print(img_s_fake[0].size())
-        print(img_t_fake[0].size())
+        # print(img_s_fake[0].size())
+        # print(img_t_fake[0].size())
         return img_s_fake, img_t_fake, f_s, f_t, size
 
     def backward_synthesis2real(self):
@@ -149,8 +149,8 @@ class T2NetModel(BaseModel):
         self.img_s2t, self.img_t2t, self.img_f_s, self.img_f_t, size = \
             self.foreward_G_basic(self.net_s2t, self.img_s, self.img_t)
 
-        print(len(self.img_s2t))
-        print(self.img_s2t[0].size())
+        # print(len(self.img_s2t))
+        # print(self.img_s2t[0].size())
 
         # image GAN loss and reconstruction loss
         img_real = task.scale_pyramid(self.img_t, size - 1)
@@ -200,9 +200,9 @@ class T2NetModel(BaseModel):
         total_loss.backward()
 
     def backward_translated2semantic(self):
-
-        print(len(self.img_s2t))
-        print(self.img_s2t[0].size())
+        #
+        # print(len(self.img_s2t))
+        # print(self.img_s2t[0].size())
 
         # task network
         network._freeze(self.net_img_D, self.net_f_D)
@@ -210,12 +210,12 @@ class T2NetModel(BaseModel):
         fake = self.net_img2task.forward(self.img_s2t[-1])
 
         size=len(fake)
-        print(size)
+        # print(size)
         self.lab_f_s = fake[0]
-        print(self.lab_f_s.size())
+        # print(self.lab_f_s.size())
         self.lab_s_g = fake[1:]
-        print(len(self.lab_s_g))
-        print(self.lab_s_g[0].size())
+        # print(len(self.lab_s_g))
+        # print(self.lab_s_g[0].size())
 
         #feature GAN loss
         D_fake = self.net_f_D(self.lab_f_s)
@@ -224,7 +224,7 @@ class T2NetModel(BaseModel):
             G_loss += torch.mean((D_fake_i - 1.0) ** 2)
         self.loss_f_G = G_loss * self.opt.lambda_gan_feature
 
-        print(self.lab_s.size())
+        # print(self.lab_s.size())
         # task loss
         # lab_real = task.scale_pyramid(self.lab_s, size-1)
         # task_loss = 0
@@ -232,9 +232,9 @@ class T2NetModel(BaseModel):
         #     task_loss += self.crossEntropy(lab_fake_i, torch.squeeze(lab_real_i.long()))
         task_loss = 0
 
-        print()
-        print(self.lab_s_g[0].size())
-        print(torch.squeeze(self.lab_s.long()).size())
+        # print()
+        # print(self.lab_s_g[0].size())
+        # print(torch.squeeze(self.lab_s.long()).size())
         if torch.squeeze(self.lab_s.long()).max() > 12 or torch.squeeze(self.lab_s.long()).min() < 0:
             print(torch.squeeze(self.lab_s.long()).min())
             print("error!!!!!")
