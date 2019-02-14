@@ -231,6 +231,13 @@ class T2NetModel(BaseModel):
         # for (lab_fake_i, lab_real_i) in zip(self.lab_s_g, lab_real):
         #     task_loss += self.crossEntropy(lab_fake_i, torch.squeeze(lab_real_i.long()))
         task_loss = 0
+
+        print()
+        print(self.lab_s_g[0].size())
+        print(torch.squeeze(self.lab_s.long()).size())
+        if torch.squeeze(self.lab_s.long()).max() > 12:
+            print("error!!!!!")
+
         task_loss = self.crossEntropy(self.lab_s_g[0], torch.squeeze(self.lab_s.long()))
 
         self.loss_lab_s = task_loss * self.opt.lambda_rec_lab
