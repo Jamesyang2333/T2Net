@@ -67,7 +67,7 @@ with open("../datasets/vkitti_rgb.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic.txt", 'w') as allFile:
     for path in pathList:
-        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        relative_path = "../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
         allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
@@ -79,7 +79,7 @@ with open("../datasets/vkitti_rgb_train.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic_train.txt", 'w') as allFile:
     for path in trainList:
-        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        relative_path = "../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
         allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
@@ -92,7 +92,7 @@ with open("../datasets/vkitti_rgb_test.txt", 'w') as allFile:
 
 with open("../datasets/vkitti_semantic_test.txt", 'w') as allFile:
     for path in testList:
-        relative_path = "datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
+        relative_path = "../datasets/vkitti/vkitti_semantic_processed/" + path[0] + "/" + path[1]
         allFile.write(os.path.join(os.getcwd(), relative_path) + "\n")
     allFile.close()
 
