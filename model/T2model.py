@@ -200,7 +200,7 @@ class T2NetModel(BaseModel):
         self.lab_f_s = fake[0]
         print(self.lab_f_s.size())
         self.lab_s_g = fake[1:]
-        print(self.lab_s_g.size())
+        print(len(self.lab_s_g))
 
         #feature GAN loss
         D_fake = self.net_f_D(self.lab_f_s)
