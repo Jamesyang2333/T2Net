@@ -224,6 +224,7 @@ class T2NetModel(BaseModel):
             G_loss += torch.mean((D_fake_i - 1.0) ** 2)
         self.loss_f_G = G_loss * self.opt.lambda_gan_feature
 
+        print(self.lab_s.size())
         # task loss
         lab_real = task.scale_pyramid(self.lab_s, size-1)
         task_loss = 0
