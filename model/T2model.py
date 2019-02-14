@@ -236,6 +236,7 @@ class T2NetModel(BaseModel):
         print(self.lab_s_g[0].size())
         print(torch.squeeze(self.lab_s.long()).size())
         if torch.squeeze(self.lab_s.long()).max() > 12 or torch.squeeze(self.lab_s.long()).min() < 0:
+            print(torch.squeeze(self.lab_s.long()).min())
             print("error!!!!!")
 
         task_loss = self.crossEntropy(self.lab_s_g[0], torch.squeeze(self.lab_s.long()))
