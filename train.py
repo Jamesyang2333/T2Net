@@ -26,10 +26,10 @@ for epoch in range(opt.epoch_count, opt.niter+opt.niter_decay+1):
         model.set_input(data)
         model.optimize_parameters(i)
 
-        # if total_steps % opt.display_freq == 0:
-        #     if epoch >= opt.transform_epoch:
-        #         model.validation_target()
-        #     visualizer.display_current_results(model.get_current_visuals(), epoch)
+        if total_steps % opt.display_freq == 0:
+            if epoch >= opt.transform_epoch:
+                model.validation_target()
+            visualizer.display_current_results(model.get_current_visuals(), epoch)
 
         if total_steps % opt.print_freq == 0:
             errors = model.get_current_errors()
