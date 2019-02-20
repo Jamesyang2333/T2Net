@@ -240,8 +240,8 @@ class T2NetModel(BaseModel):
             print("error!!!!!")
 
         self.lab_s = self.lab_s.long()
-        size = list(self.lab_s.size())
-        self.lab_s = self.lab_s.view(size[0], size[2], size[3])
+        # size = list(self.lab_s.size())
+        # self.lab_s = self.lab_s.view(size[0], size[2], size[3])
         print(self.lab_s_g[0].size())
         print(self.lab_s.size())
         task_loss = self.crossEntropy(self.lab_s_g[0], self.lab_s)
