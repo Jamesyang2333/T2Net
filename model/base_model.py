@@ -65,10 +65,9 @@ class BaseModel():
                 save_filename = '%s_net_%s.pth' % (which_epoch, name)
                 save_path = os.path.join(self.save_dir, save_filename)
                 net = getattr(self, 'net_'+name)
-                print(net.state_dict().keys())
-                print("\n")
-                print(torch.load(save_path).keys())
-                print(torch.load(save_path).state_dict().keys())
+                # print(net.state_dict().keys())
+                # print("\n")
+                # print(torch.load(save_path).keys())
                 net.load_state_dict(torch.load(save_path))
                 if not self.isTrain:
                     net.eval()
