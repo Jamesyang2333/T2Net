@@ -67,6 +67,7 @@ class BaseModel():
                 net = getattr(self, 'net_'+name)
                 print(net.state_dict().keys())
                 print("\n")
+                print(torch.load(save_path).keys())
                 print(torch.load(save_path).state_dict().keys())
                 net.load_state_dict(torch.load(save_path))
                 if not self.isTrain:
