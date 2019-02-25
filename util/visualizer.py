@@ -131,6 +131,8 @@ class Visualizer():
         for label, image_numpy in visuals.items():
             image_name = '%s_%s.png' % (name, label)
             save_path = os.path.join(image_dir, image_name)
+            print(image_numpy.shape)
+            print(save_path)
             util.save_image(image_numpy, save_path)
 
             ims.append(image_name)
