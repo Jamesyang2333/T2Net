@@ -3,6 +3,7 @@ from torch.autograd import Variable
 from .base_model import BaseModel
 from . import network
 from util import util
+import numpy as np
 from collections import OrderedDict
 
 
@@ -59,6 +60,7 @@ class TestModel(BaseModel):
             img_target = util.tensor2im(self.img_t.data[i])
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
             lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i]).argmax(axis=2)
+            lab_fake_target = np.reshape(lab_fake_target, (lab_fake_target.shape[0],lab_fake_target.shape[1], 1))
 
             visuals = OrderedDict([('img_s', img_source), ('img_s2t', img_source2target)])
             print('process image ......%s' % img_source_paths[0])
