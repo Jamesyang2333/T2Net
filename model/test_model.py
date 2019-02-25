@@ -58,7 +58,7 @@ class TestModel(BaseModel):
             img_source = util.tensor2im(self.img_s.data[i])
             img_target = util.tensor2im(self.img_t.data[i])
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
-            lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i])
+            lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i]).argmax(axis=2)
 
             visuals = OrderedDict([('img_s', img_source), ('img_s2t', img_source2target)])
             print('process image ......%s' % img_source_paths[0])
