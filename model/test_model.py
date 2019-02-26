@@ -50,6 +50,7 @@ class TestModel(BaseModel):
             self.img_s2t = self.net_s2t.forward(self.img_s)
             self.lab_t_g = self.net_img2task.forward(self.img_t)
             print(type(self.lab_t_g))
+            print(type(self.lab_t_g[0]))
             print(self.lab_t_g[0].dtype)
             print(self.lab_t_g[0].size())
 
@@ -62,8 +63,9 @@ class TestModel(BaseModel):
             img_source = util.tensor2im(self.img_s.data[i])
             img_target = util.tensor2im(self.img_t.data[i])
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
-            print(type())
             lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i]).argmax(axis=2)
+            print(type(self.lab_t_g[-1].data[i]))
+            print(lab_fake_target.shape)
             lab_fake_target = np.reshape(lab_fake_target, (lab_fake_target.shape[0],lab_fake_target.shape[1], 1))
 
             visuals = OrderedDict([('img_s', img_source), ('img_s2t', img_source2target)])
