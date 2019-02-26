@@ -49,7 +49,9 @@ class TestModel(BaseModel):
         with torch.no_grad():
             self.img_s2t = self.net_s2t.forward(self.img_s)
             self.lab_t_g = self.net_img2task.forward(self.img_t)
+            print(type(self.lab_t_g))
             print(self.lab_t_g[0].dtype)
+            print(self.lab_t_g[0].size())
 
     # save_results
     def save_results(self, visualizer, wed_page):
@@ -60,6 +62,7 @@ class TestModel(BaseModel):
             img_source = util.tensor2im(self.img_s.data[i])
             img_target = util.tensor2im(self.img_t.data[i])
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
+            print(type())
             lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i]).argmax(axis=2)
             lab_fake_target = np.reshape(lab_fake_target, (lab_fake_target.shape[0],lab_fake_target.shape[1], 1))
 
