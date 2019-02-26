@@ -51,8 +51,8 @@ class TestModel(BaseModel):
             self.lab_t_g = self.net_img2task.forward(self.img_t)
             print(type(self.lab_t_g))
             print(type(self.lab_t_g[0]))
-            print(self.lab_t_g[0].dtype)
-            print(self.lab_t_g[0].size())
+            print(self.lab_t_g[1].dtype)
+            print(self.lab_t_g[1].size())
 
     # save_results
     def save_results(self, visualizer, wed_page):
