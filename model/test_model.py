@@ -49,9 +49,9 @@ class TestModel(BaseModel):
         with torch.no_grad():
             self.img_s2t = self.net_s2t.forward(self.img_s)
             self.lab_t_g = self.net_img2task.forward(self.img_t)
-            print(len(self.lab_t_g))
-            print(type(self.lab_t_g[0]))
             print(self.lab_t_g[1].dtype)
+            print(type(self.lab_t_g[1].data))
+            print(self.lab_t_g[1].data.shape())
             print(self.lab_t_g[1].size())
 
     # save_results
