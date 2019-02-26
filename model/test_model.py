@@ -49,7 +49,7 @@ class TestModel(BaseModel):
         with torch.no_grad():
             self.img_s2t = self.net_s2t.forward(self.img_s)
             self.lab_t_g = self.net_img2task.forward(self.img_t)
-            print(self.lab_t_g.dtype)
+            print(self.lab_t_g[0].dtype)
 
     # save_results
     def save_results(self, visualizer, wed_page):
