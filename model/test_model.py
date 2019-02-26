@@ -63,8 +63,9 @@ class TestModel(BaseModel):
             img_source = util.tensor2im(self.img_s.data[i])
             img_target = util.tensor2im(self.img_t.data[i])
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
-            lab_fake_target = util.tensor2im(self.lab_t_g[-1].data[i]).argmax(axis=2)
-            print(type(self.lab_t_g[-1].data[i]))
+            lab_fake_target = (self.lab_t_g[-1].data[i]).numpy()
+            print(lab_fake_target.shape)
+            lab_fake_target = lab_fake_target.argmax(axis=2)
             print(lab_fake_target.shape)
             lab_fake_target = np.reshape(lab_fake_target, (lab_fake_target.shape[0],lab_fake_target.shape[1], 1))
 
