@@ -65,9 +65,13 @@ class TestModel(BaseModel):
             img_source2target = util.tensor2im(self.img_s2t[-1].data[i])
             lab_fake_target = (self.lab_t_g[-1].data[i]).cpu().numpy()
             print(lab_fake_target.shape)
+            lab_fake_target = np.transpose(lab_fake_target, (1, 2, 0))
             lab_fake_target = lab_fake_target.argmax(axis=2)
+            print(lab_fake_target.dtype)
+            print(lab_fake_target[0][0])
             print(lab_fake_target.shape)
             lab_fake_target = np.reshape(lab_fake_target, (lab_fake_target.shape[0],lab_fake_target.shape[1], 1))
+            print(lab_fake_target.shape)
 
             visuals = OrderedDict([('img_s', img_source), ('img_s2t', img_source2target)])
             print('process image ......%s' % img_source_paths[0])
