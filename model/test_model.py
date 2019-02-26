@@ -66,7 +66,7 @@ class TestModel(BaseModel):
             lab_fake_target = (self.lab_t_g[-1].data[i]).cpu().numpy()
             print(lab_fake_target.shape)
             lab_fake_target = np.transpose(lab_fake_target, (1, 2, 0))
-            lab_fake_target = lab_fake_target.argmax(axis=2)
+            lab_fake_target = lab_fake_target.argmax(axis=2).astype(dtype="uint8")
             print(lab_fake_target.dtype)
             print(lab_fake_target[0][0])
             print(lab_fake_target.shape)
